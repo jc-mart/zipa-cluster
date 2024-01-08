@@ -24,7 +24,7 @@ sudo apt install python3-pip -y
 
 python3.11 -m venv zipa-cluster-venv
 
-./zipa-cluster-venv/bin/pip install poetry
+./zipa-cluster-venv/bin/pip install -r requirements.txt
 # Ensure version 1.7.1
 
 ./zipa-cluster-venv/bin/poetry update
