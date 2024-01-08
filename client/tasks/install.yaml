@@ -1,0 +1,7 @@
+- name: "Installing utilities"
+  apt:
+    name: "{{ utils }}"
+
+- name: "Installing Python utilities"
+  apt:
+    name: "{{ python3 }}"

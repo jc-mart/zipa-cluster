@@ -1,0 +1,15 @@
+- name: "Creating directory and mounting to NFS"
+  file:
+    path: /mnt/data
+    state: directory
+
+- name: "Setting fstab configuration"
+  mount:
+    backup: true
+    boot: true
+    fstype: nfs
+    path: /mnt/data
+    src: 0.0.0.0:/mnt/data # Change to IP address
+    dump: '0'
+    opts: auto
+    state: present

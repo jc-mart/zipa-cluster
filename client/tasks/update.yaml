@@ -1,0 +1,20 @@
+# Installs package dependencies
+- name: "Upgrading packages"
+  apt:
+    update_cache: yes
+    autoclean: true
+    upgrade: safe
+    autoremove: true
+    purge: true
+
+- name: "Upgrading system packages"
+  apt:
+    upgrade: full
+    autoremove: true
+    purge: true
+
+- name: "Upgrading distribution"
+  apt:
+    upgrade: dist
+    autoremove: true
+    purge: true
