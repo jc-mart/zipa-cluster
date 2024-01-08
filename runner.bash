@@ -26,3 +26,6 @@ python3.11 -m venv zipa-cluster-venv
 
 ./zipa-cluster-venv/bin/pip install poetry
 # Ensure version 1.7.1
+
+./zipa-cluster-venv/bin/poetry update
+
