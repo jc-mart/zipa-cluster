@@ -8,3 +8,8 @@
     regexp: '^127\.0\.1\.1[ \t]+raspberrypi'
     line: '127.0.1.1                pi-{{ clock }}'
     state: present
+
+- name: "Storing hostname in home directory"
+  copy:
+    src: /etc/hostname
+    dest: "{{ lookup('env', 'HOME') }}/hostname.txt"
