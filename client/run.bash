@@ -17,7 +17,9 @@ sudo apt install python3-pip -y
 
 python3.11 -m venv zipa-cluster-venv
 
-./zipa-cluster-venv/vin/pip pip install -r requirements.txt
+./zipa-cluster-venv/bin/pip pip install -r requirements.txt
+
+./zipa-cluster-venv/bin/poetry update
 
 ansible-galaxy collection install community.general
 
