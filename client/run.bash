@@ -14,8 +14,10 @@ sudo apt install ansible -y
 sudo apt --fix-broken install -y
 
 sudo apt install python3-pip -y
-python3 -m pip install --upgrade pip
-python3 -m pip install -r requirements.txt
+
+python3.11 -m venv zipa-cluster-venv
+
+./zipa-cluster-venv/vin/pip pip install -r requirements.txt
 
 ansible-galaxy collection install community.general
 
