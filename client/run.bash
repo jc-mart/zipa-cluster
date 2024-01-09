@@ -23,4 +23,6 @@ python3.11 -m venv zipa-cluster-venv
 
 ansible-playbook -i inventory.ini playbook.yaml
 
+cat /etc/hostname > hostname.txt
+
 source ~/.bashrc

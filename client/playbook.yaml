@@ -4,11 +4,6 @@
     connection: local
     become: yes
 
-    vars_prompt:
-    - name: hostname
-      prompt: "What is the hostname of this device?"
-      private: false
-
     tasks:
       - import_tasks: tasks/update.yaml
       - import_tasks: tasks/install.yaml
