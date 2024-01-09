@@ -21,8 +21,6 @@ python3.11 -m venv zipa-cluster-venv
 
 ./zipa-cluster-venv/bin/poetry update
 
-ansible-galaxy collection install community.general
-
 ansible-playbook -i inventory.ini playbook.yaml
 
 source ~/.bashrc

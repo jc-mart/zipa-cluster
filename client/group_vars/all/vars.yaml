@@ -2,7 +2,7 @@
 
 utils:
   - git=1:2.39.2-1.1
-  - vim=9.0.1378-2
+  - vim=2:9.0.1378-2
   - avahi-daemon=0.8-10
 
 python3:
