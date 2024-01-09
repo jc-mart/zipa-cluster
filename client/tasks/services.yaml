@@ -4,3 +4,8 @@
     enabled: true
     force: true
     state: restarted
+
+- name: "Placing ZIPA service file"
+  copy:
+    src: zipa.service
+    dest: /etc/avahi/services
