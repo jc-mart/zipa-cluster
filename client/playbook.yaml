@@ -6,7 +6,8 @@
 
     tasks:
       - import_tasks: tasks/update.yaml
-      - import_tasks: tasks/install.yaml
+      - import_tasks: tasks/install-sys-utils.yaml
+      - import_tasks: tasks/install-py-utils.yaml
       - import_tasks: tasks/hostname.yaml
       - import_tasks: tasks/services.yaml
       - import_tasks: tasks/filesystem.yaml
