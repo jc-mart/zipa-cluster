@@ -6,15 +6,18 @@
     upgrade: safe
     autoremove: true
     purge: true
+    state: fixed
 
 - name: "Upgrading system packages"
   apt:
     upgrade: full
     autoremove: true
     purge: true
+    state: fixed
 
 - name: "Upgrading distribution"
   apt:
     upgrade: dist
     autoremove: true
     purge: true
+    state: fixed

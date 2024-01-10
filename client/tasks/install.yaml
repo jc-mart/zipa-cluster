@@ -5,3 +5,11 @@
 - name: "Installing Python utilities"
   apt:
     name: "{{ python3 }}"
+
+- name: "Installing Python packages"
+  pip:
+    requirements: requirements.txt
+    virtualenv: "{{ lookup('env', 'HOME') }}/zipa-cluster-venv"
+    virtualenv_python: python3.11
+  shell:
+    cmd: "{{ lookup('env', 'HOME') }}/zipa-cluster-venv/bin/poetry update"
