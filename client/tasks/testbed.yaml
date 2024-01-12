@@ -1,4 +1,4 @@
 - name: "Cloning testbed"
   git:
     repo: 'https://github.com/isaac-ahlgren/zipa-testbed'
-    dest: '{{ lookup('env', 'HOME') }}/zipa-testbed'
+    dest: "{{ lookup('env', 'HOME') }}/zipa-testbed"
