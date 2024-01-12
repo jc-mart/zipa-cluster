@@ -1,2 +1,5 @@
 poetry
 zeroconf
+numpy
+pyaudio
+netifaces
