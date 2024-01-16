@@ -2,3 +2,10 @@
   git:
     repo: 'https://github.com/isaac-ahlgren/zipa-testbed'
     dest: "{{ lookup('env', 'HOME') }}/zipa-testbed"
+
+- name: "Replacing host IP address"
+  replace:
+    path: "{{ lookup('env', 'HOME') }}/zipa-testbed/main.py"
+    regexp: 'eth0'
+    replace: "{{ hostIP }}"
+    
