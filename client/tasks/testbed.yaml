@@ -7,5 +7,5 @@
   replace:
     path: "{{ lookup('env', 'HOME') }}/zipa-testbed/main.py"
     regexp: 'eth0'
-    replace: "{{ hostIP }}"
+    replace: "{{ ansible_default_ipv4.interface }}"
     
