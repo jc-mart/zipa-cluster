@@ -7,3 +7,5 @@ sudo apt install ansible -y
 ansible-playbook -i inventory.ini playbook.yaml
 
 source ~/.bashrc
+
+sudo reboot
