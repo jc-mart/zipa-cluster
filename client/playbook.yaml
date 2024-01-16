@@ -12,5 +12,3 @@
       - import_tasks: tasks/services.yaml
       - import_tasks: tasks/filesystem.yaml
       - import_tasks: tasks/testbed.yaml
-      - import_tasks: tasks/reboot.yaml
-      - import_tasks: tasks/runner.yaml
