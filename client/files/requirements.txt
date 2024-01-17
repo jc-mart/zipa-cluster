@@ -3,3 +3,5 @@ zeroconf
 numpy
 pyaudio
 netifaces
+scipy
+cryptography
