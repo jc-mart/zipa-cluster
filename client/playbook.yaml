@@ -1,7 +1,7 @@
 ---
-  - name: "Configuring client node"
-    hosts: [localhost]
-    connection: local
+  - name: "Configuring Pi's"
+    hosts: all
+    connection: ssh
     become: yes
 
     tasks:
