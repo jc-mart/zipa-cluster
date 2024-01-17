@@ -9,3 +9,4 @@
   copy:
     src: zipa.service
     dest: /etc/avahi/services
+    remote_src: true
