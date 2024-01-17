@@ -9,7 +9,7 @@
     boot: true
     fstype: nfs
     path: /mnt/dryrun # Change if necesary
-    src: x.x.x.x:/mnt/dryrun # Change if necessary, replacing IP 
+    src: 10.17.29.18:/mnt/dryrun # Change if necessary, replacing IP 
     dump: '0'
     opts: auto
     state: present

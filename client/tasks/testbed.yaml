@@ -13,5 +13,5 @@
   replace:
     path: "{{ lookup('env', 'HOME') }}/zipa-testbed/main.py"
     regexp: '/mnt/data'
-    replace: "/mnt/dryrun"
+    replace: "/mnt/dryrun" # Change to NFS directory
     
