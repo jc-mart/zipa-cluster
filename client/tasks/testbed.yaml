@@ -8,4 +8,10 @@
     path: "{{ lookup('env', 'HOME') }}/zipa-testbed/main.py"
     regexp: 'eth0'
     replace: "{{ ansible_default_ipv4.interface }}"
+
+- name: "Replacing NFS mount point"
+  replace:
+    path: "{{ lookup('env', 'HOME') }}/zipa-testbed/main.py"
+    regexp: '/mnt/data'
+    replace: "/mnt/dryrun"
     
