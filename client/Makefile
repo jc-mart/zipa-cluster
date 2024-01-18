@@ -1,2 +1,2 @@
 runAnsible:
-	/path/to/bin/python3 -m ansible playbook playbook.yml --ask-pass --ask-become-pass
+	python3 -m ansible playbook playbook.yaml --ask-pass --ask-become-pass

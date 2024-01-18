@@ -1,18 +1,13 @@
 - name: "Configuring Python virtual environment"
   shell:
-    cmd: "python3.11 -m venv {{ lookup('env', 'HOME') }}/zipa-cluster-venv"
+    cmd: "python3.11 -m venv /home/pi/zipa-cluster-venv"
 
 - name: "Copying requirements.txt file from host"
   copy:
     src: requirements.txt
-    dest: "{{ lookup('env', 'HOME' )}}/zipa-cluster-venv"
-    remote_src: true
+    dest: "/home/pi/zipa-cluster-venv"
 
 - name: "Installing Python packages"
   pip:
-    requirements: "{{ lookup('env', 'HOME' )}}/zipa-cluster-venv/requirements.txt"
-    virtualenv: "{{ lookup('env', 'HOME') }}/zipa-cluster-venv"
-  
-- name: "Updating Python packages"
-  shell:
-    cmd: "{{ lookup('env', 'HOME') }}/zipa-cluster-venv/bin/poetry update"
+    requirements: "/home/pi/zipa-cluster-venv/requirements.txt"
+    virtualenv: "/home/pi/zipa-cluster-venv"
