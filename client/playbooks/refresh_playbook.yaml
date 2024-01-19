@@ -1,0 +1,11 @@
+---
+  - name: "Refreshing testbed"
+    hosts: all
+    connection: ssh
+    become: yes
+
+    tasks:
+      - import_tasks: ../tasks/delete.yaml
+      - import_tasks: ../tasks/testbed.yaml
+      - import_tasks: ../tasks/reboot.yaml
+      - import_tasks: ../tasks/runner.yaml
