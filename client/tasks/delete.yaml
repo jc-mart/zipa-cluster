@@ -1,0 +1,4 @@
+- name: "Deleting testbed code"
+  file:
+    state: absent
+    path: /home/pi/zipa-testbed
