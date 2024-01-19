@@ -2,7 +2,6 @@
   git:
     repo: 'https://github.com/isaac-ahlgren/zipa-testbed'
     dest: "/home/pi/zipa-testbed"
-    version: id-fix
 
 - name: "Replacing host IP address"
   replace:
