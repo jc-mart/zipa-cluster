@@ -6,3 +6,7 @@ netifaces
 scipy
 cryptography
 mysql-connector-python
+matplotlib
+adafruit-circuitpython-bmp280
+adafruit-circuitpython-veml7700
+gpiozero
