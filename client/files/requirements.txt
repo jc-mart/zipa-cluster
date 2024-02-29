@@ -10,3 +10,4 @@ matplotlib
 adafruit-circuitpython-bmp280
 adafruit-circuitpython-veml7700
 gpiozero
+pyyaml

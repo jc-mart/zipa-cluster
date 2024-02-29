@@ -2,7 +2,7 @@
   git:
     repo: 'https://github.com/isaac-ahlgren/zipa-testbed'
     dest: "/home/pi/zipa-testbed"
-    version: "mic"
+    version: "live-testing"
 
 - name: "Replacing host IP address"
   replace:
@@ -16,7 +16,7 @@
     regexp: '/mnt/data'
     replace: "/mnt/dryrun" # Change to NFS directory
 
-# - name: "Compiling RS Code"
-#   shell: make all
-#   args:
-#    chdir: /home/pi/zipa-testbed/rscode-1.3/
+- name: "Compiling RS Code"
+  shell: make all
+  args:
+    chdir: /home/pi/zipa-testbed/rscode-1.3/
