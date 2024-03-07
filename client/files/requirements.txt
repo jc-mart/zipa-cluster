@@ -9,5 +9,6 @@ mysql-connector-python
 matplotlib
 adafruit-circuitpython-bmp280
 adafruit-circuitpython-veml7700
+adafruit-circuitpython-sht31d
 gpiozero
 pyyaml

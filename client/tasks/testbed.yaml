@@ -4,11 +4,17 @@
     dest: "/home/pi/zipa-testbed"
     version: "live-testing"
 
-- name: "Replacing host IP address"
+- name: "Replacing host IP address in main.py"
   replace:
     path: "/home/pi/zipa-testbed/main.py"
     regexp: 'eth0'
     replace: "{{ ansible_default_ipv4.interface }}"
+
+- name: "Replacing host IP address in zipa_sys.py"
+  replace:
+    path: "/home/pi/zipa-testbed/zipa_sys.py"
+    regexp: '192.168.1.220'
+    replace: "{{ ansible_default_ipv4.address }}"
 
 - name: "Replacing NFS mount point"
   replace:
