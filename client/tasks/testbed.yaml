@@ -2,7 +2,16 @@
   git:
     repo: 'https://github.com/isaac-ahlgren/zipa-testbed'
     dest: "/home/pi/zipa-testbed"
-    version: "live-testing"
+
+- name: "Changing permissions on zipa-testbed directory"
+  shell: chmod ugo+w zipa-testbed
+  args:
+    chdir: /home/pi/
+
+- name: "Changing permissions on zipa-testbed files"
+  shell: chmod ugo+w *
+  args:
+    chdir: /home/pi/zipa-testbed/
 
 - name: "Replacing host IP address in main.py"
   replace:

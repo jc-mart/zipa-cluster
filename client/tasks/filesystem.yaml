@@ -1,6 +1,6 @@
 - name: "Creating directory and mounting to NFS"
   file:
-    path: /mnt/dryrun # Change if necessary
+    path: /mnt/data # Change if necessary
     state: directory
 
 - name: "Setting fstab configuration"
@@ -8,8 +8,8 @@
     backup: true
     boot: true
     fstype: nfs
-    path: /mnt/dryrun # Change if necesary
-    src: 10.17.29.18:/mnt/dryrun # Change if necessary, replacing IP 
+    path: /mnt/data # Change if necesary
+    src: 10.17.29.18:/mnt/data # Change if necessary, replacing IP 
     dump: '0'
     opts: auto
     state: present

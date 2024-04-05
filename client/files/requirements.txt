@@ -12,3 +12,4 @@ adafruit-circuitpython-veml7700
 adafruit-circuitpython-sht31d
 gpiozero
 pyyaml
+scikit-learn

@@ -5,6 +5,7 @@
     become: yes
 
     tasks:
+      - import_tasks: tasks/filesystem.yaml
       - import_tasks: tasks/delete.yaml
       - import_tasks: tasks/testbed.yaml
       - import_tasks: tasks/reboot.yaml
