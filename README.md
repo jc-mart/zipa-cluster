@@ -47,8 +47,8 @@ Server side setup will be responsible for creating the NFS server onto the compu
       - Keep the `ansible_connection` and `ansible_user` fields the same
       - Once completed, save the file
 5. Run the Ansible install script.
-    - Still in the client directory on the command line, type `make install` to run the script.
+    - Still in the client directory on the command line, type `make install` to run the script
       - The script prompts for the password so that it can make changes to the Pi
-6. SSH into the Pi to run the testbed.
-    - `cd` into the **zipa-testbed** directory and type `run` to begin running the testbed code.
-    - **NOTE:** This task is a work in progress, so that it is automated and no user intervention is required.
+6. Run a protocol.
+    - Using the **server.py** file on your computer from the ZIPA testbed repository (linked above), modify fields such as `IP_ADDR` with your computers LAN IP address, `TARGET_IP_ADDRESS` with one of the Pi's LAN IP address (to act as the host), and `bytestream` with one of the available protocols
+    - Once modified, run the file using `python3 server.py` to send the protocol to the host Pi, to begin the testbed on all participating Pi's
