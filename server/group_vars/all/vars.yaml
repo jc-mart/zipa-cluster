@@ -1,0 +1,6 @@
+# Installable packages using apt
+
+utils:
+  - vim
+  - nfs-kernel-server
+  - mysql-server

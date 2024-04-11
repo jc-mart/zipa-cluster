@@ -1,0 +1,10 @@
+- name: "Creating directory for NFS"
+  file:
+    path: /mnt/data
+    state: directory
+
+- name: "Configuring permissions for NFS directory"
+  shell: echo "/mnt/data *(rw,sync,no_subtree_check)" >> /etc/exports
+
+- name: "Applying export configuration"
+  shell: sudo exportfs -arv
