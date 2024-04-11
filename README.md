@@ -1,31 +1,54 @@
 # Zipa Testbed Cluster
 
-This repo sets up the Raspberry Pi's used for the ZIPA testbed. Ansible configures system settings, downloads dependencies, and runs the testbed.
+This repository sets up Raspberry Pi's used for the [ZIPA testbed](https://github.com/isaac-ahlgren/zipa-testbed/tree/main) project. Ansible configures system settings, downloads dependencies, and runs the testbed.
 
-## Setup
+## Overview
 
 ### Requirements
 
-- At least two Raspberry Pi's (3 or higher)
-- At least two compatible USB microphones
-- Separate computer capable of running [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html), [nmap](https://nmap.org/download.html), [Raspberry Pi Imager](https://www.raspberrypi.com/software/), and SSH
-- Readily available WiFi or ethernet connection to the same LAN with internet access
-- At least two SD cards (32GB or higher)
-- Machine capable of running a NFS server
+- Readily available Wi-Fi or ethernet connection to the same LAN with internet access
+- At minimum two Raspberry Pi's (Models 3 B+ or later)
+- SD cards for flashing PiOS (Preferrably 32GB or higher)
+- Compatible sensors to hookup (a USB microphone for each Pi, for example)
+- A computer capable of running [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html), [nmap](https://nmap.org/download.html), [Raspberry Pi Imager](https://www.raspberrypi.com/software/), SSH, and running an NFS server (NFS server can be run on a separate machine)
 
-### Setting up
+### Setup
 
-### 1. Server-side
+### 1. Server Side
 
-Server side Ansible scripts are underway
+**Server side Ansible scripts is currently a work in progress.**
 
-This currently assumes that you have setup a NFS server and have a computer on the network to distribute a server.py file
+Server side setup will be responsible for creating the NFS server onto the computer or a separate machine running Linux.
 
-### 2. Client-side
+### 2. Client side
 
-1. Using Raspberry Pi Imager on a machine, henceforth as the host machine, flash the SD card with the latest version of PiOS lite. Customize the settings to create a username and password, configuring WLAN if no ethernet connection is used, and enable SSH.
-2. Insert the SD card into a Raspberry Pi and hookup the device to a microphone and ethernet if not using WLAN. Then, plug the Pi to power.
-3. Using the command line on the host machine while on the same network as the Raspberry Pi's, use `ifconfig` to determine the networks LAN address. Plug the LAN address into nmap using the command `nmap -v -sn x.x.x.x/24`. This will reveal the Raspberry Pi's on the local network and are identifiable by their default hostname "**raspberrypi.lan**". Note these addresses.
-4. `cd` into `zipa-cluster/client/` to modify the **inventory.ini** file and overwrite the existing IP addresses with the local IP addresses of each Raspberry Pi discovered. Keep the tailing information as it is needed for Ansible to run, and adding them if you need to put more addresses.
-5. Once set and still in the same directory, type `make` on the command line to run the Ansible playbook. Ansible will then need user input, asking for the Raspbery Pi's password to login to SSH and once more to act as superuser. Ansible will then connect to the Raspberry Pi's through the local IP addresses supplied in the **inventory.ini** file. This process takes around 15 minutes with a good internet connection to setup all devices.
-6. Once Ansible completes its playbook, run the **server.py** file on the host machine. This will mock the devices discovering and connecting to each other, and begin exchanging information to authenticate.
+1. Flash PiOS lite onto the SD card using Raspberry Pi Imager.
+    - When prompted, customize OS settings from the Imager such as:
+      - Setting an easily identifiable hostname for finding the Pi on the LAN network.
+      - Set a default username and password, to be the same on all imaged Pi's.
+      - Specify WLAN SSID and password if using Wi-Fi.
+      - Enable both SSH and SSH password authentication.
+
+2. Insert SD card with PiOS into the Raspberry Pi, hookup sensors, insert ethernet cable if not using Wi-Fi, and plug into power.
+    - Our setup on one of our various deployed Pi's comprised of:
+      - One microphone attached through a USB audio card
+      - Humidity, light, and temperature sensors daisy chained using I2C on pins `5` and `7` using 5V power
+      - VoltKey interfaces through serial on pins `8` and `10`
+      - PIR sensor interfaces on pin `32` using 3V3 power
+
+3. Once Pi's have booted up, use **nmap** on the command line to search for the devices on the local network and note their IP addresses.
+    - For example:
+      - Using `ifconfig` reveals the computer's **wlan0** address as **192.168.1.100**; note the three octets, **192.168.1**
+      - Use the command `nmap -sn your.three.octets.0/24` to find all discoverable devices on the network
+      - Once the network scan is completed, note all IP addresses that have the Raspberry Pi's identifiable hostname
+4. Still on the computer, navigate to this project's client directory and edit the **inventory.ini** file.
+    - Using your favorite text editor and following the file's schema:
+      - Add/replace existing addresses with the addresses with your noted addresses
+      - Keep the `ansible_connection` and `ansible_user` fields the same
+      - Once completed, save the file
+5. Run the Ansible install script.
+    - Still in the client directory on the command line, type `make install` to run the script.
+      - The script prompts for the password so that it can make changes to the Pi
+6. SSH into the Pi to run the testbed.
+    - `cd` into the **zipa-testbed** directory and type `run` to begin running the testbed code.
+    - **NOTE:** This task is a work in progress, so that it is automated and no user intervention is required.
