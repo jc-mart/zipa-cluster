@@ -1,4 +1,0 @@
-- name: "Running testbed code"
-  command: "/home/pi/zipa-cluster-venv/bin/python3.11 /home/pi/zipa-testbed/main.py"
-  async: 15780000
-  poll: 0

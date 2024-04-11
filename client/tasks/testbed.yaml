@@ -1,3 +1,8 @@
+- name: "Deleting testbed code"
+  file:
+    state: absent
+    path: /home/pi/zipa-testbed
+
 - name: "Cloning testbed"
   git:
     repo: 'https://github.com/isaac-ahlgren/zipa-testbed'

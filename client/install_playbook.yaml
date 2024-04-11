@@ -9,9 +9,8 @@
       - import_tasks: tasks/install-sys-utils.yaml
       - import_tasks: tasks/install-py-utils.yaml
       - import_tasks: tasks/hostname.yaml
-      - import_tasks: tasks/services.yaml
       - import_tasks: tasks/filesystem.yaml
       - import_tasks: tasks/testbed.yaml
-      - import_tasks: tasks/alias.yaml
+      - import_tasks: tasks/setup.yaml
+      - import_tasks: tasks/services.yaml
       - import_tasks: tasks/reboot.yaml
-      # - import_tasks: tasks/runner.yaml

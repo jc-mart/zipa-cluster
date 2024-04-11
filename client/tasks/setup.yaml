@@ -10,3 +10,9 @@
 
 - name: "Creating alias for testbed python package manager"
   shell: echo "alias tbpip='sudo /home/pi/zipa-cluster-venv/bin/pip3'" >> .bashrc
+
+- name: "Enbaling serial port interface"
+  shell: sudo raspi-config nonint do_i2c 0
+
+- name: "Enabling I2C interface"
+  shell: sudo echo "enable_uart=1" >> /boot/firmware/config.txt

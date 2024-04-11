@@ -1,11 +1,23 @@
-- name: "Starting avahi"
+- name: "Placing avahi ZIPA service file"
+  copy:
+    src: zipa-avahi.service
+    dest: /etc/avahi/services
+
+- name: "Starting avahi-daemon"
   systemd:
     name: avahi-daemon
     enabled: true
     force: true
     state: restarted
 
-- name: "Placing ZIPA service file"
+- name: "Placing ZIPA systemd service file"
   copy:
-    src: zipa.service
-    dest: /etc/avahi/services
+    src: zipa-systemd.service
+    dest: /etc/systemd/system
+
+- name: "Starting ZIPA daemon"
+  systemd:
+    name: zipa-systemd
+    enabled: true
+    force: true
+    state: started
