@@ -3,8 +3,15 @@
     path: /mnt/data
     state: directory
 
-- name: "Configuring permissions for NFS directory"
-  shell: echo "/mnt/data *(rw,sync,no_subtree_check)" >> /etc/exports
+- name: "Changing directory permissions"
+  shell: sudo chown nobody:nogroup /mnt/data
+
+# Good idea to only allow connections from a certain IP address
+- name: "Configuring client permissions for NFS directory"
+  shell: sudo echo "/mnt/data 192.168.1.0/24(rw,sync,no_subtree_check)" >> /etc/exports
 
 - name: "Applying export configuration"
-  shell: sudo exportfs -arv
+  shell: sudo systemctl restart nfs-kernel-server
+
+- name: "Opening port 2049 to allow traffic"
+  shell: sudo ufw allow from 192.168.1.0/24 to any port nfs

@@ -4,3 +4,4 @@ utils:
   - vim
   - nfs-kernel-server
   - mysql-server
+  - ufw

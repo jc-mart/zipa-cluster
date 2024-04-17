@@ -1,0 +1,10 @@
+---
+  - name: "Configuring NFS server"
+    hosts: all
+    connection: ssh
+    become: yes
+
+    tasks:
+      - import_tasks: tasks/update.yaml
+      - import_tasks: tasks/install-sys-utils.yaml
+      - import_tasks: tasks/filesystem.yaml
