@@ -14,13 +14,7 @@ This repository sets up Raspberry Pi's used for the [ZIPA testbed](https://githu
 
 ### Setup
 
-### 1. Server Side
-
-**Server side Ansible scripts is currently a work in progress.**
-
-Server side setup will be responsible for creating the NFS server onto the computer or a separate machine running Linux.
-
-### 2. Client side
+### 1. Client side
 
 1. Flash PiOS lite onto the SD card using Raspberry Pi Imager.
     - When prompted, customize OS settings from the Imager such as:
@@ -52,3 +46,11 @@ Server side setup will be responsible for creating the NFS server onto the compu
 6. Run a protocol.
     - Using the **server.py** file on your computer from the ZIPA testbed repository (linked above), modify fields such as `IP_ADDR` with your computers LAN IP address, `TARGET_IP_ADDRESS` with one of the Pi's LAN IP address (to act as the host), and `bytestream` with one of the available protocols
     - Once modified, run the file using `python3 server.py` to send the protocol to the host Pi, to begin the testbed on all participating Pi's
+
+### 2. Server Side
+
+1. Run the Ansible install script.
+   - On the command line for the machine intended to hold the NFS, navigate to the server directory and modify the **inventory.ini** file and include the machine's IP address (can be done through `ifconfig` or `nmap`), as well as a valid superuser
+   - Navigate to the tasks directory, and modify the **filesystem.yaml** file to change the IP addresses to an expected subnet address so that multiple clients from that subnet can mount to the NFS
+   - Return to the server directory and type `make install` to run the script
+   - The script prompts for the password so that it can make changes to the machine
