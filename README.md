@@ -1,4 +1,4 @@
-# Zipa Testbed Cluster
+# ZIPA Testbed Cluster
 
 This repository sets up Raspberry Pi's used for the [ZIPA testbed](https://github.com/isaac-ahlgren/zipa-testbed/tree/main) project. Ansible configures system settings, downloads dependencies, and runs the testbed.
 
