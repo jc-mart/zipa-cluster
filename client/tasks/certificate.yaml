@@ -1,0 +1,36 @@
+- name: "Creating easy-rsa CA directory"
+  shell: make-cadir easy-rsa
+  args:
+    chdir: /etc/openvpn
+
+- name: "Replacing vars file"
+  copy:
+    src: vars
+    dest: /etc/openvpn/easy-rsa
+    force: true
+
+- name: "Initializing public key infrastructure"
+  shell: ./easyrsa init-pki
+  args:
+    chdir: /etc/openvpn/easy-rsa
+
+- name: "Building certificate authority"
+  shell: ./easyrsa build-ca nopass
+  args:
+    chdir: /etc/openvpn/easy-rsa
+
+- name: "Generating key and certificate request for the server"
+  shell: "./easyrsa gen-req {{ ansible_hostname }} nopass"
+  args:
+    chdir: /etc/openvpn/easy-rsa
+
+- name: "Creating accessible key and certificate directory"
+  file:
+    path: /home/pi/certificates
+    state: directory
+
+- name: "Copying generated certificate request to accessible directory"
+  copy:
+    src: /etc/openvpn/easy-rsa/pki/reqs/{{ ansible_hostname }}.req
+    dest: /home/pi/certificates
+    remote_src: true
