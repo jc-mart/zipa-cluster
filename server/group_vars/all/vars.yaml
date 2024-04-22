@@ -5,3 +5,5 @@ utils:
   - nfs-kernel-server
   - mysql-server
   - ufw
+  - easy-rsa
+  - openvpn

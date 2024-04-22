@@ -8,3 +8,4 @@
       - import_tasks: tasks/update.yaml
       - import_tasks: tasks/install-sys-utils.yaml
       - import_tasks: tasks/filesystem.yaml
+      - import_tasks: tasks/key-cert.yaml
