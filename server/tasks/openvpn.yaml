@@ -1,0 +1,39 @@
+- name: "Copying server configuration file"
+  copy:
+    src: server.conf
+    dest: "/etc/openvpn/{{ ansible_hostname }}.conf"
+    force: true
+
+- name: "Replacing server certificate filename"
+  lineinfile:
+    path: "/etc/openvpn/{{ ansible_hostname }}.conf"
+    search_string: "cert server.crt"
+    line: "cert {{ ansible_hostname }}.crt"
+
+- name: "Replacing server key filename"
+  lineinfile:
+    path: "/etc/openvpn/{{ ansible_hostname }}.conf"
+    search_string: "key server.key"
+    line: "key {{ ansible_hostname }}.key"
+
+- name: "Generating TLS-authentication key"
+  shell: openvpn --gen-key --secret ta.key
+  args:
+    chdir: /etc/openvpn
+
+- name: "Fetching TLS-authentication key for clients"
+  fetch:
+    src: /etc/openvpn/ta.key
+    dest: ~/Documents/zipa-cluster/client/files/ta.key # Find a way to store this onto project
+
+- name: "Enabling IP forwarding"
+  lineinfile:
+    path: /etc/sysctl.conf
+    search_string: "#net.ipv4.ip_forward=1"
+    line: "net.ipv4.ip_forward=1"
+
+- name: "Realoding sysctl"
+  shell: sysctl -p /etc/sysctl.conf
+
+- name: "Starting OpenVPN server daemon"
+  shell: "systemctl start openvpn@{{ ansible_hostname }}"

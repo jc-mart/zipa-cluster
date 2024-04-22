@@ -14,4 +14,4 @@
       - import_tasks: tasks/setup.yaml
       - import_tasks: tasks/services.yaml
       - import_tasks: tasks/reboot.yaml
-      - import_tasks: tasks/certificate.yaml
+      - import_tasks: tasks/easy-rsa.yaml
