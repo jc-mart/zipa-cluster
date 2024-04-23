@@ -1,12 +1,12 @@
 - name: "Changing hostname"
   hostname:
-    name: 'pi-{{ ansible_machine_id }}'
+    name: '{{ ansible_machine_id }}'
 
 - name: "Changing hostname in /etc/hosts"
   lineinfile:
     dest: /etc/hosts
     regexp: '^127\.0\.1\.1[ \t]+raspberrypi'
-    line: '127.0.1.1                pi-{{ ansible_machine_id }}'
+    line: '127.0.1.1                {{ ansible_machine_id }}'
     state: present
 
 - name: "Storing hostname in home directory"

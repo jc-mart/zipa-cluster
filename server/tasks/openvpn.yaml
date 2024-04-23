@@ -21,11 +21,6 @@
   args:
     chdir: /etc/openvpn
 
-- name: "Fetching TLS-authentication key for clients"
-  fetch:
-    src: /etc/openvpn/ta.key
-    dest: ~/Documents/zipa-cluster/client/files/ta.key # Find a way to store this onto project
-
 - name: "Enabling IP forwarding"
   lineinfile:
     path: /etc/sysctl.conf

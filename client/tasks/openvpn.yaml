@@ -4,6 +4,12 @@
     dest: /etc/openvpn
     force: true
 
+- name: "Replacing server IP address"
+  lineinfile:
+    path: /etc/openvpn/client.conf
+    search_string: "remote xxx.xxx.xxx.xxx 1194"
+    line: "remote {{ server_ip }} 1194"
+
 - name: "Replacing certificate name in client configuration file"
   lineinfile:
     path: /etc/openvpn/client.conf
@@ -16,3 +22,5 @@
     search_string: "key client.key"
     line: "key {{ ansible_hostname }}.key"
 
+- name: "Starting OpenVPN client daemon"
+  shell: systemctl start openvpn@client
