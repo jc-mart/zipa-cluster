@@ -16,8 +16,14 @@
     search_string: "key server.key"
     line: "key {{ ansible_hostname }}.key"
 
+- name: "Replacing Diffie Hellman parameter filename"
+  lineinfile:
+    path: "/etc/openvpn/{{ ansible_hostname }}.conf"
+    search_string: "dh dh2048.pem"
+    line: "dh dh.pem"
+
 - name: "Generating TLS-authentication key"
-  shell: openvpn --gen-key --secret ta.key
+  shell: openvpn --genkey --secret ta.key
   args:
     chdir: /etc/openvpn
 
