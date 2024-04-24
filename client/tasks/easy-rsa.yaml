@@ -26,5 +26,5 @@
 
 - name: "Copying issued key to OpenVPN directory"
   shell: "cp easy-rsa/pki/private/{{ ansible_hostname }}.key ."
-    args:
+  args:
       chdir: /etc/openvpn
