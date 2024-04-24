@@ -1,0 +1,4 @@
+- name: "Cloning cluster scripts"
+  git:
+    repo: https://github.com/jc-mart/zipa-cluster
+    dest: ~/Documents

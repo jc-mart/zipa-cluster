@@ -15,11 +15,11 @@
     chdir: /etc/openvpn/easy-rsa
 
 - name: "Building certificate authority"
-  shell: ./easyrsa build-ca nopass
+  shell: ./easyrsa --batch build-ca nopass
   args:
     chdir: /etc/openvpn/easy-rsa
 
 - name: "Generating key and certificate request for the server"
-  shell: "./easyrsa gen-req {{ ansible_hostname }} nopass"
+  shell: "./easyrsa --batch gen-req {{ ansible_hostname }} nopass"
   args:
     chdir: /etc/openvpn/easy-rsa
