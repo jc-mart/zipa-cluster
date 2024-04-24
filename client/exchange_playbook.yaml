@@ -5,11 +5,11 @@
     connection: ssh
     become: yes
 
-  vars_prompt:
-  - name: server_ip
-    prompt: "What is the IP address of the server?"
-    private: false
+    vars_prompt:
+    - name: server_ip
+      prompt: "What is the IP address of the server?"
+      private: false
 
-  tasks:
-    - import_tasks: tasks/crt-key-exchange.yaml
-    - import_tasks: tasks/openvpn.yaml
+    tasks:
+      - import_tasks: tasks/crt-key-exchange.yaml
+      - import_tasks: tasks/openvpn.yaml
