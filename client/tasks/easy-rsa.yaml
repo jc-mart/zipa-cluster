@@ -23,3 +23,8 @@
   shell: "./easyrsa --batch gen-req {{ ansible_hostname }} nopass"
   args:
     chdir: /etc/openvpn/easy-rsa
+
+- name: "Copying issued key to OpenVPN directory"
+  shell: "cp easy-rsa/pki/private/{{ ansible_hostname }}.key ."
+    args:
+      chdir: /etc/openvpn

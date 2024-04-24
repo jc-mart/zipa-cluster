@@ -2,39 +2,35 @@
   copy:
     src: /etc/openvpn/ta.key
     dest: /etc/openvpn
+    force: true
 
 - name: "Copying CA certificate to clients"
   copy:
     src: /etc/openvpn/ca.crt
-    dest: /etc/openvpn/ca.crt
+    dest: /etc/openvpn
     force: true
 
 - name: "Fetching client certificate requests"
   fetch:
     src: /etc/openvpn/easy-rsa/pki/reqs/{{ ansible_hostname }}.req
-    dest: /etc/openvpn/easy-rsa/pki/reqs
-    flat: yes
+    dest: /etc/openvpn/easy-rsa/pki/reqs/
+    flat: true
+
+- name: "Listing client devices"
+  fetch:
+    src: /etc/openvpn/easy-rsa/pki/reqs/{{ ansible_hostname }}.req
+    dest: /etc/openvpn/easy-rsa/{{ ansible_hostname }}
+    flat: true
 
 - name: "Signing client certificates" # TODO ensure this works
   local_action:
     module: shell
-    cmd: "./easyrsa sign-req client {{ item.name }}"
+    cmd: "./easyrsa --batch sign-req client *"
     args:
       chdir: /etc/openvpn/easy-rsa
-    with_items: "{{ ansible_hostname }}" 
 
 - name: "Sending out client certificates"
   copy: 
-    src: /etc/openvpn/easy-rsa/pki/issued
-    dest: /home/pi
-
-- name: "Placing client certificate in OpenVPN folder"
-  copy: 
-    src: /home/pi/issued/{{ ansible_hostname }}.crt
+    src: /etc/openvpn/easy-rsa/pki/issued/{{ ansible_hostname }}.crt
     dest: /etc/openvpn
-    remote_src: yes
-
-- name: "Deleting shared certificates directory"  
-  file:
-    path: /home/pi/issued
-    state: absent
+    force: true

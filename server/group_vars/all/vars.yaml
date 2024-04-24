@@ -6,5 +6,7 @@ utils:
   - mysql-server
   - ufw
   - ansible
+  - python3-pip
+  - sshpass
   - easy-rsa
   - openvpn
