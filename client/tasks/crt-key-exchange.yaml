@@ -16,16 +16,10 @@
     dest: /etc/openvpn/easy-rsa/pki/reqs/
     flat: true
 
-- name: "Listing client devices"
-  fetch:
-    src: /etc/openvpn/easy-rsa/pki/reqs/{{ ansible_hostname }}.req
-    dest: /etc/openvpn/easy-rsa/{{ ansible_hostname }}
-    flat: true
-
 - name: "Signing client certificates" # TODO ensure this works
   local_action:
     module: shell
-    cmd: "./easyrsa --batch sign-req client *"
+    cmd: "./easyrsa --batch sign-req client {{ ansible_hostname }}"
     args:
       chdir: /etc/openvpn/easy-rsa
 
