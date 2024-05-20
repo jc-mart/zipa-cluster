@@ -3,13 +3,13 @@
     path: /mnt/data # Change if necessary
     state: directory
 
-- name: "Setting fstab configuration"
+- name: "Setting fstab configuration"        
   mount:
     backup: true
     boot: true
     fstype: nfs
     path: /mnt/data # Change if necesary
-    src: 10.17.29.18:/mnt/data # Change if necessary, replacing IP 
+    src: "{{ nfs_ip }}:/mnt/data" 
     dump: '0'
     opts: auto
     state: present

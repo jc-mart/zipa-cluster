@@ -8,7 +8,7 @@
   lineinfile:
     path: /etc/openvpn/client.conf
     search_string: "remote xxx.xxx.xxx.xxx 1194"
-    line: "remote {{ server_ip }} 1194"
+    line: "remote {{ nfs_ip }} 1194"
 
 - name: "Replacing certificate name in client configuration file"
   lineinfile:

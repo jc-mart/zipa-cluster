@@ -4,6 +4,14 @@
     connection: ssh
     become: yes
 
+    vars_prompt:
+      - name: nfs_ip
+        prompt: "What is the IP address for the NFS server?"
+        private: no
+      - name: reconfig_network_response
+        prompt: "Do you want the nodes to change to a seperate network (y/n)?"
+        private: no
+    
     tasks:
       - import_tasks: tasks/update.yaml
       - import_tasks: tasks/install-sys-utils.yaml
@@ -13,5 +21,7 @@
       - import_tasks: tasks/testbed.yaml
       - import_tasks: tasks/setup.yaml
       - import_tasks: tasks/services.yaml
+      - import_tasks: tasks/reconfigure-network.yaml
+        when: reconfig_network_response == "y"
       - import_tasks: tasks/reboot.yaml
       - import_tasks: tasks/easy-rsa.yaml
