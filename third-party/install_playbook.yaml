@@ -1,6 +1,6 @@
 ---
   - name: "Configuring this device as the CA authority"
-    hosts: all
+    hosts: localhost
     connection: localhost
     become: yes
 
