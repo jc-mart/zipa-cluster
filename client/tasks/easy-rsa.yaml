@@ -9,6 +9,12 @@
     dest: /etc/openvpn/easy-rsa
     force: true
 
+- name: "Setting unique Common Name"
+  lineinfile:
+    path: /etc/openvpn/easy-rsa/vars
+    search_string: '#set_var EASYRSA_REQ_CN       "ChangeMe"'
+    line: 'set_var EASYRSA_REQ_CN       "{{ ansible_hostname }}"'
+
 - name: "Initializing public key infrastructure"
   shell: ./easyrsa init-pki
   args:
