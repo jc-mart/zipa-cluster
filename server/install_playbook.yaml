@@ -1,6 +1,6 @@
 ---
   - name: "Configuring NFS server"
-    hosts: 127.0.0.1
+    hosts: all
     connection: localhost
     become: yes
 

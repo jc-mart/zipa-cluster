@@ -1,10 +1,10 @@
 - name: "Creating alias for running testbed"
-  shell: echo "alias run='/home/pi/zipa-cluster-venv/bin/python3.11 /home/pi/zipa-testbed/main.py'" >> .bashrc
+  shell: echo "alias run='sudo /home/pi/zipa-cluster-venv/bin/python3.11 /home/pi/zipa-testbed/main.py'" >> .bashrc
   args:
     chdir: /home/pi
 
 - name: "Creating alias for testbed python virtual environment"
-  shell: echo "alias tbpy='/home/pi/zipa-cluster-venv/bin/python3.11'" >> .bashrc
+  shell: echo "alias tbpy='sudo /home/pi/zipa-cluster-venv/bin/python3.11'" >> .bashrc
   args:
     chdir: /home/pi
 
