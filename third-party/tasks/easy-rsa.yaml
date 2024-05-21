@@ -1,0 +1,51 @@
+- name: "Creating easy-rsa CA directory"
+  shell: make-cadir ./easy-rsa
+  args:
+    chdir: /etc/openvpn
+
+- name: "Replacing vars file"
+  copy:
+    src: vars
+    dest: /etc/openvpn/easy-rsa
+    force: true
+
+- name: "Setting unique Common Name"
+  lineinfile:
+    path: /etc/openvpn/easy-rsa/vars
+    search_string: '#set_var EASYRSA_REQ_CN       "ChangeMe"'
+    line: 'set_var EASYRSA_REQ_CN       "{{ ansible_hostname }}"'
+
+- name: "Initializing public key infrastructure"
+  shell: ./easyrsa init-pki
+  args:
+    chdir: /etc/openvpn/easy-rsa
+
+- name: "Building certificate authority"
+  shell: ./easyrsa --batch build-ca nopass
+  args:
+    chdir: /etc/openvpn/easy-rsa
+
+- name: "Generating device client key"
+  shell: "./easyrsa --batch gen-req {{ ansible_hostname }} nopass"
+  args:
+    chdir: /etc/openvpn/easy-rsa
+
+- name: "Signing device client certificate"
+  shell: "./easyrsa --batch sign-req {{ ansible_hostname }} nopass"
+  args:
+    chdir: /etc/openvpn/easy-rsa
+
+- name: "Generating server Diffie Hellman parameters"
+  shell: ./easyrsa --batch gen-dh
+  args:
+    chdir: /etc/openvpn/easy-rsa
+
+- name: "Creating temporary server file directory"
+  file:
+    state: directory
+    path: /tmp/server-files
+
+- name: "Copying relevant files for sever setup"
+  shell: "cp pki/dh.pem pki/ca.crt /tmp/server-files"
+  args:
+    chdir: /etc/openvpn/easy-rsa

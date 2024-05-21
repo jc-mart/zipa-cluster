@@ -1,0 +1,27 @@
+- name: "Copying client configuration file"
+  copy:
+    src: client.conf
+    dest: /etc/openvpn
+    force: true
+
+- name: "Replacing server IP address"
+  lineinfile:
+    path: /etc/openvpn/client.conf
+    search_string: "remote xxx.xxx.xxx.xxx 1194"
+    line: "remote {{ nfs_ip }} 1194"
+
+- name: "Replacing certificate name in client configuration file"
+  lineinfile:
+    path: /etc/openvpn/client.conf
+    search_string: "cert client.crt"
+    line: "cert {{ ansible_hostname }}.crt"
+
+- name: "Replacing key name in client configuration file"
+  lineinfile:
+    path: /etc/openvpn/client.conf
+    search_string: "key client.key"
+    line: "key {{ ansible_hostname }}.key"
+
+# Daemon won't run since server isn't up at this stage
+# - name: "Starting OpenVPN client daemon"
+#   shell: systemctl start openvpn@client

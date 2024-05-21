@@ -1,0 +1,9 @@
+# Installable packages using apt
+
+utils:
+  - vim
+  - python3-pip
+  - ansible 
+  - sshpass
+  - easy-rsa
+  - openvpn

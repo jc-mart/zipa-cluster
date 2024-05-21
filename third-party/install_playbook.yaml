@@ -1,0 +1,11 @@
+---
+  - name: "Configuring this device as the CA authority"
+    hosts: all
+    connection: localhost
+    become: yes
+
+    tasks:
+      - import_tasks: tasks/update.yaml
+      - import_tasks: tasks/install-sys-utils.yaml
+      - import_tasks: tasks/easy-rsa.yaml
+      - import_tasks: tasks/openvpn.yaml
