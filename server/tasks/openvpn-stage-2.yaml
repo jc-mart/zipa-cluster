@@ -1,0 +1,51 @@
+- name: "Copying server configuration file"
+  copy:
+    src: server.conf
+    dest: "/etc/openvpn/{{ ansible_hostname }}.conf"
+    force: true
+
+- name: "Replacing server certificate filename"
+  lineinfile:
+    path: "/etc/openvpn/{{ ansible_hostname }}.conf"
+    search_string: "cert server.crt"
+    line: "cert {{ ansible_hostname }}.crt"
+
+- name: "Replacing server key filename"
+  lineinfile:
+    path: "/etc/openvpn/{{ ansible_hostname }}.conf"
+    search_string: "key server.key"
+    line: "key {{ ansible_hostname }}.key"
+
+- name: "Replacing Diffie Hellman parameter filename"
+  lineinfile:
+    path: "/etc/openvpn/{{ ansible_hostname }}.conf"
+    search_string: "dh dh2048.pem"
+    line: "dh dh.pem"
+
+- name: "Generating TLS-authentication key"
+  shell: openvpn --genkey --secret ta.key
+  args:
+    chdir: /etc/openvpn
+
+- name: "Fetching TLS-auth key for third-party CA device"
+  fetch:
+    src: /etc/openvpn/ta.key
+    dest: /tmp/server-files
+    flat: true
+
+- name: "Placing necessary files on OpenVPN directory for third-party CA device"
+  local_action:
+    module: shell
+    cmd: "cp /tmp/server-files/ta.key /etc/openvpn"
+
+- name: "Enabling IP forwarding"
+  lineinfile:
+    path: /etc/sysctl.conf
+    search_string: "#net.ipv4.ip_forward=1"
+    line: "net.ipv4.ip_forward=1"
+
+- name: "Realoding sysctl"
+  shell: sysctl -p /etc/sysctl.conf
+
+- name: "Starting OpenVPN server daemon"
+  shell: "systemctl start openvpn@{{ ansible_hostname }}"

@@ -1,0 +1,62 @@
+- name: "Creating easy-rsa CA directory"
+  shell: make-cadir ./easy-rsa
+  args:
+    chdir: /etc/openvpn
+
+- name: "Replacing vars file"
+  copy:
+    src: vars
+    dest: /etc/openvpn/easy-rsa
+    force: true
+
+- name: "Setting unique Common Name"
+  lineinfile:
+    path: /etc/openvpn/easy-rsa/vars
+    search_string: '#set_var EASYRSA_REQ_CN       "ChangeMe"'
+    line: 'set_var EASYRSA_REQ_CN       "{{ ansible_hostname }}"'
+
+- name: "Initializing public key infrastructure"
+  shell: ./easyrsa init-pki
+  args:
+    chdir: /etc/openvpn/easy-rsa
+
+- name: "Building certificate authority"
+  shell: ./easyrsa --batch build-ca nopass
+  args:
+    chdir: /etc/openvpn/easy-rsa
+
+- name: "Generating server certificate request"
+  shell: "./easyrsa --batch gen-req {{ ansible_hostname }} nopass"
+  args:
+    chdir: /etc/openvpn/easy-rsa
+
+- name: "Fetching server certificate request"
+  fetch:
+    src: /etc/openvpn/easy-rsa/pki/reqs/{{ ansible_hostname }}.req
+    dest: /etc/openvpn/easy-rsa/pki/reqs/
+    flat: true
+
+- name: "Signging server certificate"
+  local_action:
+    module: shell
+    cmd: "./easyrsa --batch sign-req server {{ ansible_hostname }}"
+    args:
+      chdir: /etc/openvpn/easy-rsa
+
+- name: "Sending signed server certificate"
+  copy:
+    src: /etc/openvpn/easy-rsa/pki/issued/{{ ansible_hostname }}.crt
+    dest: /etc/openvpn
+    force: true
+
+- name: "Sending over CA certificate from third party to server"
+  copy:
+    src: /tmp/server-files/ca.crt
+    dest: /etc/openvpn
+    force: true
+
+- name: "Sending over DH parameters from third party to server"
+  copy:
+    src: /tmp/server-files/dh.pem
+    dest: /etc/openvpn
+    force: true

@@ -1,0 +1,9 @@
+---
+  - name: "Configuring server with third party device acting as CA"
+    hosts: all
+    connection: ssh
+    become: yes
+
+    tasks:
+      - import_tasks: tasks/easy-rsa-stage-2.yaml
+      - import_tasks: tasks/openvpn-stage-2.yaml

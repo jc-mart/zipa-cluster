@@ -15,7 +15,7 @@
       - import_tasks: tasks/filesystem.yaml
       - import_tasks: tasks/cluster.yaml
         when: same_network == "y"
-      - import_tasks: tasks/easy-rsa.yaml
+      - import_tasks: tasks/easy-rsa-stage-1.yaml
         when: same_network == "n"
-      - import_tasks: tasks/openvpn.yaml
+      - import_tasks: tasks/openvpn-stage-1.yaml
         when: same_network == "n"

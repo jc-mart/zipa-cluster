@@ -31,9 +31,14 @@
     chdir: /etc/openvpn/easy-rsa
 
 - name: "Signing device client certificate"
-  shell: "./easyrsa --batch sign-req {{ ansible_hostname }} nopass"
+  shell: "./easyrsa --batch sign-req client {{ ansible_hostname }} nopass"
   args:
     chdir: /etc/openvpn/easy-rsa
+
+- name: "Copying generated device credentials to OpenVPN directory"
+  shell: "cp issued/{{ ansible_hostname }}.crt private/{{ ansible_hostname }}.key ca.crt ../.."
+  args:
+    chdir: /etc/openvpn/easy-rsa/pki
 
 - name: "Generating server Diffie Hellman parameters"
   shell: ./easyrsa --batch gen-dh
