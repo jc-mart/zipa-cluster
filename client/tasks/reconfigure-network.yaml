@@ -1,16 +1,23 @@
 - name: "Sending network.sh over"
   copy:
     src: network.sh
-    dest: "~"
+    dest: /home/pi/
 
 - name: "Sending network configuration over"
   copy:
     src: network.nmconnection
     dest: /etc/NetworkManager/system-connections/
 
+- name: "Changing permissions for network configuration file"
+  file:
+    path: /etc/NetworkManager/system-connections/network.nmconnection
+    owner: root
+    group: root
+    mode: '600'
+
 - name: Changing network.sh permissions
   ansible.builtin.file:
-    path: ~/network.sh
+    path: /home/pi/network.sh
     owner: root
     group: root
     mode: '600'
@@ -19,4 +26,4 @@
   ansible.builtin.cron:
     name: "running network.sh"
     special_time: reboot
-    job: "~/network.sh"
+    job: /home/pi/network.sh
