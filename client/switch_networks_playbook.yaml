@@ -1,0 +1,9 @@
+---
+  - name: "Configuring Pi's"
+    hosts: all
+    connection: ssh
+    become: yes
+
+    # Must use the 10. address given by OpenVPN's tun0 interface.    
+    tasks:
+      - import_tasks: tasks/reconfigure-network.yaml

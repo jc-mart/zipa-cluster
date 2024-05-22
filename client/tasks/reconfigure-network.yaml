@@ -1,8 +1,3 @@
-- name: "Sending network.sh over"
-  copy:
-    src: network.sh
-    dest: /home/pi/
-
 - name: "Sending network configuration over"
   copy:
     src: network.nmconnection
@@ -15,15 +10,5 @@
     group: root
     mode: '600'
 
-- name: Changing network.sh permissions
-  ansible.builtin.file:
-    path: /home/pi/network.sh
-    owner: root
-    group: root
-    mode: '600'
-
-- name: Creating job to reconfigure network
-  ansible.builtin.cron:
-    name: "running network.sh"
-    special_time: reboot
-    job: /home/pi/network.sh
+- name: "Switching wireless networks"
+  shell: sudo nmcli c reload; sudo nmcli con down preconfigured; sudo nmcli con up network;

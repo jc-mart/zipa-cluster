@@ -22,8 +22,7 @@
       - import_tasks: tasks/services.yaml
       - import_tasks: tasks/reboot.yaml
       - import_tasks: tasks/easy-rsa-stage-2.yaml
+      # TODO: Collect all 10. addresses from participating Pi's for network reconfiguration.
       - import_tasks: tasks/openvpn.yaml
       - import_tasks: tasks/filesystem.yaml
-      - import_tasks: tasks/reconfigure-network.yaml
-        when: reconfig_network_response == "y"
       - import_tasks: tasks/reboot.yaml
