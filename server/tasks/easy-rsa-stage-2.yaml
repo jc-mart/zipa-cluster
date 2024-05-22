@@ -51,12 +51,12 @@
 
 - name: "Sending over CA certificate from third party to server"
   copy:
-    src: /tmp/server-files/ca.crt
+    src: /usr/share/server-files/ca.crt
     dest: /etc/openvpn
     force: true
 
 - name: "Sending over DH parameters from third party to server"
   copy:
-    src: /tmp/server-files/dh.pem
+    src: /usr/share/server-files/dh.pem
     dest: /etc/openvpn
     force: true
