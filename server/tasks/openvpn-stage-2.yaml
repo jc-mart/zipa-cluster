@@ -4,6 +4,12 @@
     dest: "/etc/openvpn/{{ ansible_hostname }}.conf"
     force: true
 
+- name: "Copying server key file to OpenVPN file"
+  copy:
+    src: /etc/openvpn/easy-rsa/pki/private/greg.key
+    dest: /etc/openvpn/
+    remote_src: true
+
 - name: "Replacing server certificate filename"
   lineinfile:
     path: "/etc/openvpn/{{ ansible_hostname }}.conf"
@@ -30,7 +36,7 @@
 - name: "Fetching TLS-auth key for third-party CA device"
   fetch:
     src: /etc/openvpn/ta.key
-    dest: /tmp/server-files
+    dest: /tmp/server-files/
     flat: true
 
 - name: "Placing necessary files on OpenVPN directory for third-party CA device"

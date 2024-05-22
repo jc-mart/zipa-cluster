@@ -1,0 +1,21 @@
+---
+  - name: "Configuring NFS server"
+    hosts: all
+    connection: ssh
+    become: yes
+
+    vars_prompt:
+      - name: same_network
+        prompt: "Will the server be working on the same network as the clients (y/n)?"
+        private: no
+
+    tasks:
+      - import_tasks: tasks/update.yaml
+      - import_tasks: tasks/install-sys-utils.yaml
+      - import_tasks: tasks/filesystem.yaml
+      - import_tasks: tasks/cluster.yaml
+        when: same_network == "y"
+      - import_tasks: tasks/easy-rsa-stage-2.yaml
+        when: same_network == "n"
+      - import_tasks: tasks/openvpn-stage-2.yaml
+        when: same_network == "n"
