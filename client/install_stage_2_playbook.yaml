@@ -21,7 +21,8 @@
       - import_tasks: tasks/setup.yaml
       - import_tasks: tasks/services.yaml
       - import_tasks: tasks/reboot.yaml
-      - import_tasks: tasks/easy-rsa.yaml
+      - import_tasks: tasks/easy-rsa-stage-2.yaml
+      - import_tasks: tasks/openvpn.yaml
       - import_tasks: tasks/filesystem.yaml
       - import_tasks: tasks/reconfigure-network.yaml
         when: reconfig_network_response == "y"
