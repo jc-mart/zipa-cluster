@@ -6,7 +6,7 @@
 
 - name: "Copying server key file to OpenVPN file"
   copy:
-    src: /etc/openvpn/easy-rsa/pki/private/greg.key
+    src: /etc/openvpn/easy-rsa/pki/private/{{ ansible_hostname }}.key
     dest: /etc/openvpn/
     remote_src: true
 
