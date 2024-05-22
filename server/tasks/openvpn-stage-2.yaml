@@ -55,3 +55,8 @@
 
 - name: "Starting OpenVPN server daemon"
   shell: "systemctl start openvpn@{{ ansible_hostname }}"
+
+- name: "Starting OpenVPN client daemon on third party"
+  local_action:
+    module: shell
+    cmd: "sudo systemctl start openvpn@client"
