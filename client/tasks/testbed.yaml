@@ -18,25 +18,13 @@
   args:
     chdir: /home/pi/zipa-testbed/
 
-- name: "Replacing host IP address in main.py"
-  replace:
-    path: "/home/pi/zipa-testbed/main.py"
-    regexp: 'eth0'
-    replace: "{{ ansible_default_ipv4.interface }}"
-
 - name: "Replacing host IP address in zipa_sys.py"
   replace:
     path: "/home/pi/zipa-testbed/zipa_sys.py"
-    regexp: '192.168.1.220'
+    regexp: 'DEVICE IDENTIFIER'
     replace: "{{ ansible_default_ipv4.address }}"
-
-- name: "Replacing NFS mount point"
-  replace:
-    path: "/home/pi/zipa-testbed/main.py"
-    regexp: '/mnt/data'
-    replace: "/mnt/dryrun" # Change to NFS directory
 
 - name: "Compiling RS Code"
   shell: make all
   args:
-    chdir: /home/pi/zipa-testbed/rscode-1.3/
+    chdir: /home/pi/zipa-testbed/lib/rscode-1.3/

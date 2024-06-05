@@ -3,7 +3,7 @@ Description=ZIPA testbed runner
 After=network-online.target
 
 [Service]
-ExecStart=sudo /home/pi/zipa-cluster-venv/bin/python3.11 /home/pi/zipa-testbed/main.py
+ExecStart=sudo /home/pi/zipa-cluster-venv/bin/python3.11 /home/pi/zipa-testbed/src/main.py
 WorkingDirectory=/home/pi/zipa-testbed/
 StandardOutput=inherit
 StandardError=inherit

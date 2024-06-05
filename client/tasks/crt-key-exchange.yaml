@@ -16,7 +16,7 @@
     dest: /etc/openvpn/easy-rsa/pki/reqs/
     flat: true
 
-- name: "Signing client certificates" # TODO ensure this works
+- name: "Signing client certificates"
   local_action:
     module: shell
     cmd: "./easyrsa --batch sign-req client {{ ansible_hostname }}"

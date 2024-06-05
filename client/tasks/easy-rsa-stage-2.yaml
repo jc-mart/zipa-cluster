@@ -1,3 +1,8 @@
+- name: "Ensuring that easy-rsa CA directory isn't present"
+  file:
+    state: absent
+    path: /etc/openvpn/easy-rsa
+
 - name: "Creating easy-rsa CA directory"
   shell: make-cadir ./easy-rsa
   args:

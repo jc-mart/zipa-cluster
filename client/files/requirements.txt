@@ -13,3 +13,4 @@ adafruit-circuitpython-sht31d
 gpiozero
 pyyaml
 scikit-learn
+pandas

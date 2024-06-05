@@ -9,7 +9,7 @@
     boot: true
     fstype: nfs
     path: /mnt/data # Change if necesary
-    src: "10.8.0.0:/mnt/data" 
+    src: "{{ nfs_ip }}:/mnt/data" 
     dump: '0'
     opts: auto
     state: present

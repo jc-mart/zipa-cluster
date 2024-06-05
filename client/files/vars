@@ -232,4 +232,4 @@ fi
 # in batch mode without any user input, confirmation on dangerous operations,
 # or most output. Setting this to any non-blank string enables batch mode.
 
-set_var EASYRSA_BATCH		"f"
+set_var EASYRSA_BATCH		"TRUE"

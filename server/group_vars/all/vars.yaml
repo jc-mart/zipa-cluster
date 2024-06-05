@@ -10,3 +10,4 @@ utils:
   - sshpass
   - easy-rsa
   - openvpn
+  - bridge-utils
