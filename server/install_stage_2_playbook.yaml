@@ -8,6 +8,9 @@
       - name: same_network
         prompt: "Will the server be working on the same network as the clients (y/n)?"
         private: no
+      - name: gateway_ip
+        prompt: "What is the gateway address?"
+        private: no
 
     tasks:
       - import_tasks: tasks/update.yaml

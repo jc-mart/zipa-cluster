@@ -1,0 +1,4 @@
+#!/bin/bash
+
+brctl addif br0 $1
+ifconfig $1 up

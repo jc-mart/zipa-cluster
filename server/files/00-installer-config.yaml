@@ -1,0 +1,16 @@
+network:
+  version: 2
+  ethernets:
+    ens160:
+      dhcp4: false
+  bridges:
+    br0:
+      dhcp4: false
+      addresses: 
+        - INSERT_IP_HERE
+      gateway4: INSERT_GATEWAY_HERE
+      nameservers:
+        addresses:
+          - 8.8.8.8
+      interfaces: 
+        - ens160

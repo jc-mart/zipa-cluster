@@ -1,3 +1,32 @@
+- name: "Copying netplan bridge template file"
+  copy:
+    src: 00-installer-config.yaml
+    dest: /etc/netplan
+    force: true
+
+- name: "Adding devices IP address"
+  lineinfile:
+    path: /etc/netplan/00-installer-config.yaml
+    search_string: "INSERT_IP_HERE"
+    line: "{{ ansible_default_ipv4.address }}/24"
+
+- name: "Adding gateway address"
+  lineinfile:
+    path: /etc/netplan/00-installer-config.yaml
+    search_string: "INSERT_GATEWAY_HERE"
+    line: "{{ gateway_ip }}"
+
+- name: "Applying new netplan configuration"
+  shell:
+    cmd: sudo netplan apply
+
+- name: "Copying OpenVPN script"
+  copy:
+    src: openvpn_up
+    dest: /etc/openvpn
+    force: true
+    mode: ugo+x
+
 - name: "Copying server configuration file"
   copy:
     src: server.conf
