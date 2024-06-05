@@ -65,7 +65,7 @@
 - name: "Fetching TLS-auth key for third-party CA device"
   fetch:
     src: /etc/openvpn/ta.key
-    dest: /etc/openvpn
+    dest: /etc/openvpn/
     flat: true
 
 - name: "Enabling IP forwarding"
