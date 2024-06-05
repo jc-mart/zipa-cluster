@@ -62,12 +62,12 @@
 
 - name: "Sending out CA certificate from third party to client"
   copy:
-    src: /usr/share/server-files/ca.crt
+    src: /etc/openvpn/ca.crt
     dest: /etc/openvpn
     force: true
 
 - name: "Sending out TLS-auth key from third party to client"
   copy:
-    src: /usr/share/server-files/ta.key
+    src: /etc/openvpn/ta.key
     dest: /etc/openvpn
     force: true

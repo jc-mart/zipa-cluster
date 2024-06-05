@@ -44,13 +44,3 @@
   shell: ./easyrsa --batch gen-dh
   args:
     chdir: /etc/openvpn/easy-rsa
-
-- name: "Creating temporary server file directory"
-  file:
-    state: directory
-    path: /usr/share/server-files
-
-- name: "Copying relevant files for sever setup"
-  shell: "cp pki/dh.pem pki/ca.crt /usr/share/server-files"
-  args:
-    chdir: /etc/openvpn/easy-rsa

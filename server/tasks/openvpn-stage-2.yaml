@@ -65,13 +65,8 @@
 - name: "Fetching TLS-auth key for third-party CA device"
   fetch:
     src: /etc/openvpn/ta.key
-    dest: /tmp/server-files/
+    dest: /etc/openvpn
     flat: true
-
-- name: "Placing necessary files on OpenVPN directory for third-party CA device"
-  local_action:
-    module: shell
-    cmd: "cp /tmp/server-files/ta.key /etc/openvpn"
 
 - name: "Enabling IP forwarding"
   lineinfile:
