@@ -20,7 +20,7 @@
 
 - name: "Replacing host IP address in zipa_sys.py"
   replace:
-    path: "/home/pi/zipa-testbed/zipa_sys.py"
+    path: "/home/pi/zipa-testbed/src/zipa_sys.py"
     regexp: 'DEVICE IDENTIFIER'
     replace: "{{ ansible_default_ipv4.address }}"
 
