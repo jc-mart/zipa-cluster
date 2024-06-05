@@ -18,11 +18,11 @@
       - import_tasks: tasks/install-py-utils.yaml
       - import_tasks: tasks/hostname.yaml
       - import_tasks: tasks/filesystem.yaml
-      - import_tasks: tasks/testbed.yaml
       - import_tasks: tasks/setup.yaml
-      - import_tasks: tasks/services.yaml
       - import_tasks: tasks/reboot.yaml
       - import_tasks: tasks/easy-rsa-stage-2.yaml
       - import_tasks: tasks/openvpn.yaml
       - import_tasks: tasks/reboot.yaml
+      - import_tasks: tasks/testbed.yaml
+      - import_tasks: tasks/services.yaml
       - import_tasks: tasks/tunnel-addresses.yaml
