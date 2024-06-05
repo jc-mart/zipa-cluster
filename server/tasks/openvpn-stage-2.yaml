@@ -8,13 +8,13 @@
   lineinfile:
     path: /etc/netplan/00-installer-config.yaml
     search_string: "INSERT_IP_HERE"
-    line: "{{ ansible_default_ipv4.address }}/24"
+    line: "        - {{ ansible_default_ipv4.address }}/24"
 
 - name: "Adding gateway address"
   lineinfile:
     path: /etc/netplan/00-installer-config.yaml
     search_string: "INSERT_GATEWAY_HERE"
-    line: "{{ gateway_ip }}"
+    line: "      gateway4: {{ gateway_ip }}"
 
 - name: "Applying new netplan configuration"
   shell:
