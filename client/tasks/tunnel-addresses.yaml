@@ -1,7 +1,7 @@
 - name: "Creating local file for tun0 addresses"
   local_action:
     module: file
-    path: /usr/share/server-files/client-openvpn-addresses
+    path: /etc/openvpn/client-openvpn-addresses
     state: touch
     mode: '0644'
 
@@ -10,5 +10,5 @@
     module: shell
     cmd: "echo {{ ansible_facts['tap0']['ipv4']['address'] }} >> client-openvpn-addresses"
     args:
-      chdir: /Users/carlitos/
+      chdir: /etc/openvpn
  
