@@ -1,8 +1,0 @@
----
-  - name: "Configuring Pi's"
-    hosts: all
-    connection: ssh
-    become: yes
-    
-    tasks:
-      - import_tasks: tasks/reconfigure-network.yaml
