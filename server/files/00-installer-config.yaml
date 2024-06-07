@@ -3,14 +3,18 @@ network:
   ethernets:
     ens160:
       dhcp4: false
-  bridges:
-    br0:
-      dhcp4: false
-      addresses: 
+      addresses:
         - INSERT_IP_HERE
       gateway4: INSERT_GATEWAY_HERE
       nameservers:
         addresses:
           - 8.8.8.8
-      interfaces: 
-        - ens160
+  bridges:
+    br0:
+      dhcp4: false
+      addresses: 
+        - 10.0.0.2/24
+      gateway4: 10.0.0.1
+      nameservers:
+        addresses:
+          - 10.0.0.1
