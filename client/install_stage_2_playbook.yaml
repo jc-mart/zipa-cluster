@@ -8,9 +8,6 @@
       - name: nfs_ip
         prompt: "What is the IP address for the NFS server?"
         private: no
-      - name: reconfig_network_response
-        prompt: "Do you want the nodes to change to a seperate network (y/n)?"
-        private: no
     
     tasks:
       - import_tasks: tasks/update.yaml
