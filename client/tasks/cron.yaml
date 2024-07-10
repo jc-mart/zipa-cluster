@@ -1,0 +1,11 @@
+- name: "Setting up stop testbed cron job"
+  cron:
+    name: "Stopping and disabling testbed daemon, and rebooting"
+    minute: 57
+    job: sudo systemctl stop zipa-systemd; sudo systemctl disable zipa-systemd; sudo reboot;
+
+- name: "Setting up start testbed cron job"
+  cron:
+    name: "Starting and enabling testbed daemon"
+    minute: 0
+    job: sudo systemctl start zipa-systemd; sudo systemctl enable zipa-systemd;

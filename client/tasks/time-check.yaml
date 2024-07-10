@@ -1,0 +1,3 @@
+- name: "Checking time"
+  debug:
+    msg: "{{ ansible_facts['tap0']['ipv4']['address'] }}'s time: {{ ansible_date_time['time'] }}"

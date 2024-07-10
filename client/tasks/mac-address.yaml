@@ -1,0 +1,13 @@
+- name: "Creating local file for listing MAC addresses"
+  local_action:
+    module: file
+    path: /home/juan/pi-mac.txt
+    state: touch
+    mode: '0644'
+
+- name: "Appending MAC address into file"
+  local_action:
+    module: shell
+    cmd: "echo '{{ ansible_facts['tap0']['ipv4']['address'] }} MAC: {{ ansible_facts['wlan0']['macaddress'] }}' >> pi-mac.txt"
+    args:
+      chdir: /home/juan
