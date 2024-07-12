@@ -28,3 +28,19 @@
   shell: make all
   args:
     chdir: /home/pi/zipa-testbed/lib/rscode-1.3/
+
+- name: "fill in user information"
+  vars:
+    user: user
+  lineinfile: 
+    path: '/home/pi/zipa-testbed/src/zipa_sys.py'
+    regexp: 'user=.*'
+    line: "            user='{{ user }}',"
+
+- name: "fill in password information"
+  vars:
+    password: password
+  lineinfile: 
+    path: '/home/pi/zipa-testbed/src/zipa_sys.py'
+    regexp: 'password=.*'
+    line: "            password='{{ password }}',"
