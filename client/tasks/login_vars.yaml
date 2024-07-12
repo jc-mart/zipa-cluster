@@ -8,12 +8,12 @@
   tasks:
     - name: fill in user information
       lineinfile: 
-        path: ''src/networking/nfs.py'
+        path: ''src/nfs.py'
         regexp: 'user=.*'
         line: "user='{{ user }}'"
 
     - name: fill in password information
       lineinfile: 
-        path: 'src/networking/nfs.py'
+        path: 'src/nfs.py'
         regexp: 'password=.*'
         line: "password='{{ password }}"
