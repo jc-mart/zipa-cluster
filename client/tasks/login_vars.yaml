@@ -1,0 +1,19 @@
+- name: zipa_sys login credentials 
+  hosts: 147.126.2.89 # temp 
+  vars: 
+    # replace credentials with whatever credentials are supposed to be
+    user: user
+    password: password
+  
+  tasks:
+    - name: fill in user information
+      lineinfile: 
+        path: ''src/networking/nfs.py'
+        regexp: 'user=.*'
+        line: "user='{{ user }}'"
+
+    - name: fill in password information
+      lineinfile: 
+        path: 'src/networking/nfs.py'
+        regexp: 'password=.*'
+        line: "password='{{ password }}"
