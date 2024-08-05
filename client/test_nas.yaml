@@ -1,0 +1,13 @@
+---
+  - name: "Testing NAS mounting"
+    hosts: all
+    connection: ssh
+    become: yes
+
+    vars_prompt:
+      - name: nas
+        prompt: "Enter NAS IP and target directory"
+        private: no
+    
+    tasks:
+      - import_tasks: tasks/filesystem.yaml

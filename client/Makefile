@@ -9,3 +9,6 @@ openvpn:
 
 install_stage2:
 	sudo python3 -m ansible playbook install_stage_2_playbook.yaml --ask-pass --ask-become-pass
+
+nas:
+	sudo python3 -m ansible playbook test_nas.yaml --ask-pass --ask-become-pass

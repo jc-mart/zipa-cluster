@@ -1,15 +1,22 @@
-- name: "Creating directory and mounting to NFS"
-  file:
-    path: /mnt/data # Change if necessary
-    state: directory
+- name: "Copying SMB share credentials for NAS mounting"
+  copy:
+    src: .smb_credentials # Assumes file exists in client/files directory
+    dest: /home/pi
 
-- name: "Setting fstab configuration"        
+- name: "Creating NAS directory"
+  file:
+    path: /mnt/testbed-data # Change if necessary
+    state: directory
+    owner: pi
+    mode: '0755'
+
+- name: "Mounting to NAS"
   mount:
     backup: true
     boot: true
-    fstype: nfs
-    path: /mnt/data # Change if necesary
-    src: "{{ nfs_ip }}:/mnt/data" 
+    fstype: cifs
+    path: /mnt/tesbed-data
+    src: "{{ nas }}"
     dump: '0'
-    opts: auto
+    opts: "credentials=/home/pi/.smb_credentials,file_mode=0755,dir_mode=0755,user" # TODO create this file
     state: present

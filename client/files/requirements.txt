@@ -14,3 +14,6 @@ gpiozero
 pyyaml
 scikit-learn
 pandas
+tsfresh
+scikit-fuzzy
+chardet
