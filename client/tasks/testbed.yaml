@@ -22,7 +22,7 @@
   replace:
     path: "/home/pi/zipa-testbed/src/zipa_sys.py"
     regexp: 'DEVICE IDENTIFIER'
-    replace: "{{ ansible_facts['tap0']['ipv4']['address'] }}"
+    replace: "{{ ansible_facts['wlan0']['ipv4']['address'] }}"
 
 - name: "Compiling RS Code"
   shell: make all

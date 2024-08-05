@@ -1,12 +1,12 @@
 ---
-  - name: "Configuring Pi's"
+  - name: "TESTING PI"
     hosts: all
     connection: ssh
     become: yes
 
     vars_prompt:
-      - name: nfs_ip
-        prompt: "What is the IP address for the NFS server?"
+      - name: nas
+        prompt: "Enter NAS IP and target directory"
         private: no
     
     tasks:
