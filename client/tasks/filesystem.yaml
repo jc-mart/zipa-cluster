@@ -15,8 +15,8 @@
     backup: true
     boot: true
     fstype: cifs
-    path: /mnt/tesbed-data
+    path: /mnt/testbed-data
     src: "{{ nas }}"
     dump: '0'
     opts: "credentials=/home/pi/.smb_credentials,file_mode=0755,dir_mode=0755,user" # TODO create this file
-    state: present
+    state: ephemeral
