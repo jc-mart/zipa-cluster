@@ -19,4 +19,4 @@
     src: "{{ nas }}"
     dump: '0'
     opts: "credentials=/home/pi/.smb_credentials,file_mode=0755,dir_mode=0755,user" # TODO create this file
-    state: ephemeral
+    state: mounted
